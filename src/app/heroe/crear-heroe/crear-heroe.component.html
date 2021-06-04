@@ -1,0 +1,21 @@
+<div class="container">
+     <div *ngIf="fallo" class="alert alert-danger mt-3"> {{mensaje}}</div>
+    <div *ngIf="!fallo" class="alert alert-success mt-3"> {{mensaje}}</div>
+    <div class="row mt-5">
+        <div class="col-md-4 mx-auto">
+            <form #f1="ngForm" (ngSubmit)="onCreate()" novalidate autocomplete="off">
+                <div class="form-group">
+                    <label for="nombre">Nombre</label>
+                    <input type="text" class="form-control" id="nombre" name="nombre"
+                    [(ngModel)]="nombre" #f1 required>
+                </div>
+                <button class="btn btn-outline-success btn-block" [disabled]="!f1.valid">
+                    <i class="fas fa-plus-circle"></i> Crear</button>
+                <button class="btn btn-outline-primary btn-block" routerLink="/lista">
+                    <i class="fas fa-arrow-alt-circle-left"></i> Volver</button>
+            </form>
+        </div>
+        
+    </div>
+</div>
+
