@@ -11,7 +11,6 @@ import { TokenService } from 'src/app/service/token.service';
 export class ListaHeroeComponent implements OnInit {
 
   heroes: Heroe[] = [];
-  roles: string[] | undefined;
   isAdmin = false;
   fallo = false;
   mensaje = "";
@@ -24,12 +23,7 @@ export class ListaHeroeComponent implements OnInit {
   ngOnInit(): void {
     this.mensaje = "Heroes"
     this.cargarHeroes();
-    this.roles = this.tokenService.getAuthorities();
-    this.roles.forEach(rol => {
-      if (rol === 'ROLE_ADMIN') {
-        this.isAdmin = true;
-      }
-    });
+    this.isAdmin = this.tokenService.isAdmin();
   }
 
   cargarHeroes(): void {

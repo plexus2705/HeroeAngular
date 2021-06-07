@@ -16,7 +16,6 @@ export class RegistroComponent implements OnInit {
   fallo= false;
   mensaje ="";
   nuevoUsuario: NuevoUsuario = new NuevoUsuario("","","","",[]);
-  isLogged = false;
   nombreUsuario!: string;
   nombre!: string;
   email!: string;
@@ -29,9 +28,7 @@ export class RegistroComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    if (this.tokenService.getToken()) {
-      this.isLogged = true;
-    }
+
   }
 
 

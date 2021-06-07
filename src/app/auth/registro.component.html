@@ -1,10 +1,6 @@
 
-<div class="text-center" *ngIf="isLogged; else loggedOut">
 
-    <h2>Ya has iniciado sesion</h2>
-</div>
 
-<ng-template #loggedOut>
     <div class="container d-flex justify-content-center">
         <div class="card">
             <div class="card-header">
@@ -19,6 +15,7 @@
                   </ul>
             </div>
             <div class="card-body">
+              <div *ngIf="fallo" class="alert alert-danger mt-3"> {{mensaje}}</div>
               <form #f="ngForm" (ngSubmit)="onRegister()" novalidate>
                   <div class="form-group">
                     <label for="nombre">Nombre</label>
@@ -55,5 +52,5 @@
             </div>
         </div>
     </div>
-</ng-template>
+
 

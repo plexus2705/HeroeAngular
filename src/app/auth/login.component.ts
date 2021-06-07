@@ -11,13 +11,12 @@ import { TokenService } from '../service/token.service';
 })
 export class LoginComponent implements OnInit {
 
-  isLogged = false;
-  isLoginFail = false;
+
   loginUsuario!: LoginUsuario;
   nombreUsuario!: string;
   password!: string;
-  roles: string[] = [];
   errMsj!: string;
+  isLoginFail = false;
 
   constructor(
     private tokenService: TokenService,
@@ -26,30 +25,16 @@ export class LoginComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-
-    if(this.tokenService.getToken() != ""){
-      this.isLogged = true;
-      this.isLoginFail = false;
-      this.roles = this.tokenService.getAuthorities();
-    }
-
-
   }
 
   onLogin(): void{
     this.loginUsuario = new LoginUsuario(this.nombreUsuario,this.password);
     this.authService.login(this.loginUsuario).subscribe(
       data => {
-        this.isLogged = true;
-        this.isLoginFail = false;
-
         this.tokenService.setToken(data.token);
-        this.tokenService.setUserName(data.nombreUsuario);
-        this.tokenService.setAuthorities(data.authorities);
-        this.roles = data.authorities;
+        this.isLoginFail = false;
         this.router.navigate(['/']);
       }, err =>{
-        this.isLogged = false;
         this.isLoginFail = true;
         this.errMsj = err;
         console.log(err)

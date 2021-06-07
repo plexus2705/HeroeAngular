@@ -4,6 +4,7 @@ import { NuevoUsuario } from '../models/nuevo-usuario';
 import { Observable } from 'rxjs';
 import { LoginUsuario } from '../models/login-usuario';
 import { JwtDto } from '../models/jwt-dto';
+import { environment } from 'src/environments/environment';
 
 
 
@@ -12,7 +13,8 @@ import { JwtDto } from '../models/jwt-dto';
 })
 export class AuthService {
 
-  authUrl ='http://localhost:8080/auth/';
+  authUrl = environment.authUrl;
+  
 
   constructor(private httpClient: HttpClient) { }
 
@@ -24,5 +26,9 @@ export class AuthService {
   public login (loginUsuario: LoginUsuario): Observable<JwtDto>{
     
     return this.httpClient.post<JwtDto>(`${this.authUrl}login`, loginUsuario);
+  } 
+  public refresh (jwtDto: JwtDto): Observable<JwtDto>{
+    
+    return this.httpClient.post<JwtDto>(`${this.authUrl}refresh`, jwtDto);
   } 
 }

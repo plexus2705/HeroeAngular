@@ -8,18 +8,13 @@ import { TokenService } from '../service/token.service';
 })
 export class IndexComponent implements OnInit {
 
-  islogged = false;
+
   nombreUsuario="";
   constructor(private tokenService: TokenService) { }
 
   ngOnInit(): void {
-    if(this.tokenService.getToken() != ""){
-      this.islogged = true;
-      this.nombreUsuario = this.tokenService.getUserName();
-    }else{
-      this.islogged = false;
-      this.nombreUsuario = "";
+    this.nombreUsuario = this.tokenService.getUserName();
     }
-  }
-
 }
+
+

@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 import { Heroe } from '../models/heroe';
 
 @Injectable({
@@ -8,7 +9,7 @@ import { Heroe } from '../models/heroe';
 })
 export class HeroeService {
 
-  heroeURL = 'http://localhost:8080/api/';
+   heroeURL = environment.heroeURL;
 
   constructor(private httpClient: HttpClient) { }
 
